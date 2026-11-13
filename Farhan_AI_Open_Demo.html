@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10152a"><title>FARHAN AI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f4f7ff;font:16px system-ui;min-height:100vh}.wrap{max-width:760px;margin:auto;min-height:100vh;display:flex;flex-direction:column;padding:16px}.head{display:flex;gap:12px;align-items:center;border-bottom:1px solid #2b3959;padding:8px 0 16px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#796bff,#26c6da);display:grid;place-items:center;font-size:22px;font-weight:900}h1{font-size:20px;margin:0}.muted{color:#a6b2cf;font-size:13px}.intro{padding:28px 4px 12px}.intro h2{margin:0 0 8px;font-size:28px}.select{width:100%;padding:12px;margin:12px 0;background:#141e37;color:white;border:1px solid #354568;border-radius:12px;font-size:15px}.chat{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px 0}.msg{max-width:88%;padding:13px 15px;border-radius:16px;white-space:pre-wrap;line-height:1.5}.bot{background:#17233d;border:1px solid #293957;align-self:flex-start}.user{background:#6557df;align-self:flex-end}.form{display:flex;gap:8px;background:#141e37;border:1px solid #354568;border-radius:16px;padding:7px;position:sticky;bottom:8px}input{flex:1;min-width:0;background:transparent;border:0;color:white;font-size:16px;padding:10px;outline:0}button{background:#796bff;color:white;border:0;border-radius:12px;padding:0 16px;font-weight:bold}.foot{text-align:center;color:#8796b7;font-size:11px;padding:10px}
+</style></head>
+<body><div class="wrap">
+<div class="head"><div class="logo">F</div><div><h1>FARHAN AI</h1><div class="muted">Your multilingual AI assistant</div></div></div>
+<div class="intro"><h2>Assalam-o-Alaikum! 👋</h2><div class="muted">Choose your language and try the chat demo.</div>
+<select class="select" id="lang"><option>Auto Detect</option><option>English</option><option>Urdu</option><option>Roman Urdu</option><option>Arabic</option><option>Hindi</option><option>Punjabi</option><option>Pashto</option><option>Chinese</option><option>Japanese</option><option>Korean</option><option>French</option><option>German</option><option>Spanish</option><option>Portuguese</option><option>Russian</option><option>Turkish</option><option>Bangla</option><option>Persian</option><option>Italian</option><option>Swahili</option><option>Indonesian</option><option>Malay</option><option>Thai</option><option>Vietnamese</option><option>Tamil</option><option>Telugu</option><option>Gujarati</option><option>Marathi</option><option>Nepali</option><option>Hebrew</option><option>Greek</option><option>Polish</option><option>Dutch</option><option>Ukrainian</option><option>Other languages</option></select>
+</div><div class="chat" id="chat"><div class="msg bot">Welcome! Main FARHAN AI ka preview hoon. Message bhej kar demo test karo.</div></div>
+<form class="form" id="form"><input id="msg" placeholder="Message FARHAN AI..." autocomplete="off"><button>Send ➤</button></form>
+<div class="foot">Preview only • Real AI engine and public hosting still need setup.</div></div>
+<script>
+const chat=document.getElementById('chat'),input=document.getElementById('msg'),lang=document.getElementById('lang');
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();let t=input.value.trim();if(!t)return;let u=document.createElement('div');u.className='msg user';u.textContent=t;chat.append(u);input.value='';let b=document.createElement('div');b.className='msg bot';b.textContent='Thanks! Selected language: '+lang.value+'. Yeh preview/demo hai. Real intelligent answers ke liye secure AI service connect karni hogi.';chat.append(b);b.scrollIntoView({behavior:'smooth'});});
+</script></body></html>
