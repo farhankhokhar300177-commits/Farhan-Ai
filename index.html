@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FARHAN AI</title>
+<style>
+body{margin:0;background:#101827;color:white;font-family:Arial;text-align:center;padding:25px}
+.box{max-width:500px;margin:40px auto;background:#1d2b40;padding:25px;border-radius:18px}
+h1{color:#36d9ff;font-size:38px}
+p{color:#cbd5e1}
+input,button{width:100%;box-sizing:border-box;padding:14px;margin-top:12px;border:0;border-radius:10px;font-size:16px}
+button{background:#08b9dc;color:#07131d;font-weight:bold}
+#answer{margin-top:20px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>FARHAN AI</h1>
+<p>Your Multilingual AI Assistant</p>
+<p>Ask me anything!</p>
+<input id="question" placeholder="Write your question here...">
+<button onclick="ask()">Ask FARHAN AI</button>
+<div id="answer"></div>
+</div>
+<script>
+function ask(){
+let q=document.getElementById('question').value.trim();
+let a=document.getElementById('answer');
+if(!q){a.innerText="Please write a question first.";return;}
+a.innerText="Welcome to FARHAN AI! Your question is: "+q+". AI service will be connected soon.";
+}
+</script>
+</body>
+</html>
