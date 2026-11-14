@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@ h1{color:#36d9ff;font-size:38px}
 p{color:#cbd5e1}
 input,button{width:100%;box-sizing:border-box;padding:14px;margin-top:12px;border:0;border-radius:10px;font-size:16px}
 button{background:#08b9dc;color:#07131d;font-weight:bold}
-#answer{margin-top:20px;line-height:1.6}
+#answer{margin-top:20px;line-height:1.6;white-space:pre-wrap}
 </style>
 </head>
 <body>
@@ -20,16 +21,43 @@ button{background:#08b9dc;color:#07131d;font-weight:bold}
 <p>Your Multilingual AI Assistant</p>
 <p>Ask me anything!</p>
 <input id="question" placeholder="Write your question here...">
-<button onclick="ask()">Ask FARHAN AI</button>
+<button id="askButton" onclick="ask()">Ask FARHAN AI</button>
 <div id="answer"></div>
 </div>
 <script>
-function ask(){
-let q=document.getElementById('question').value.trim();
-let a=document.getElementById('answer');
-if(!q){a.innerText="Please write a question first.";return;}
-a.innerText="Welcome to FARHAN AI! Your question is: "+q+". AI service will be connected soon.";
+async function ask(){
+const q=document.getElementById('question').value.trim();
+const a=document.getElementById('answer');
+const btn=document.getElementById('askButton');
+
+if(!q){
+a.innerText="Please write a question first.";
+return;
+}
+
+btn.disabled=true;
+a.innerText="FARHAN AI is thinking...";
+
+try{
+const r=await fetch("https://summer-unit-6158.farhankhokhar300177.workers.dev/",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({message:q})
+});
+
+const data=await r.json();
+
+if(!r.ok) throw new Error(data.error || "AI service error");
+
+a.innerText=data.answer || data.error || "No answer received.";
+
+}catch(error){
+a.innerText="Connection problem: "+error.message;
+}finally{
+btn.disabled=false;
+}
 }
 </script>
 </body>
 </html>
+
