@@ -1,63 +1,68 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10131d">
 <title>FARHAN AI</title>
 <style>
-body{margin:0;background:#101827;color:white;font-family:Arial;text-align:center;padding:25px}
-.box{max-width:500px;margin:40px auto;background:#1d2b40;padding:25px;border-radius:18px}
-h1{color:#36d9ff;font-size:38px}
-p{color:#cbd5e1}
-input,button{width:100%;box-sizing:border-box;padding:14px;margin-top:12px;border:0;border-radius:10px;font-size:16px}
-button{background:#08b9dc;color:#07131d;font-weight:bold}
-#answer{margin-top:20px;line-height:1.6;white-space:pre-wrap}
+:root{--bg:#0d1018;--panel:#151a26;--panel2:#1c2332;--text:#f4f6fb;--muted:#9aa5b8;--line:#2b3447;--accent:#8b7cff;--accent2:#4dd7c8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px Inter,system-ui,Arial,sans-serif;height:100vh;overflow:hidden}
+.app{display:flex;height:100dvh}.sidebar{width:260px;background:#111622;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:12px;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:10px;padding:5px 8px 18px;font-size:19px;font-weight:800;letter-spacing:.5px}.logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#081019;font-weight:900}
+.nav{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:var(--text);padding:12px;border-radius:12px;text-align:left;font-size:14px;cursor:pointer}.nav:hover,.nav.active{background:var(--panel2)}.nav .ico{width:22px;text-align:center;font-size:17px}.section{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.3px;padding:14px 12px 3px}.sidebottom{margin-top:auto}.small{color:var(--muted);font-size:12px;line-height:1.5;padding:10px}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}.topbar{height:62px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px}.topname{font-weight:700}.pill{font-size:11px;color:var(--accent2);border:1px solid #2c655f;padding:5px 9px;border-radius:20px}
+.content{flex:1;overflow:auto;padding:24px;max-width:1050px;width:100%;margin:0 auto}.welcome{text-align:center;padding:8vh 10px 28px}.orb{width:62px;height:62px;margin:0 auto 18px;border-radius:22px;background:linear-gradient(135deg,#8b7cff,#4dd7c8);box-shadow:0 10px 45px #8b7cff35;display:grid;place-items:center;color:#10131d;font-size:28px}.welcome h1{font-size:clamp(27px,5vw,42px);margin:0 0 10px}.gradient{background:linear-gradient(90deg,#a99fff,#61e1d4);-webkit-background-clip:text;background-clip:text;color:transparent}.welcome p{color:var(--muted);margin:0}.chat{display:flex;flex-direction:column;gap:18px;padding-bottom:18px}.msg{max-width:85%;padding:14px 16px;border-radius:17px;line-height:1.55;white-space:pre-wrap}.user{align-self:flex-end;background:#34304f}.bot{align-self:flex-start;background:var(--panel);border:1px solid var(--line)}.composer-wrap{padding:12px 20px 18px;border-top:1px solid var(--line);background:#0d1018}.composer{max-width:900px;margin:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:10px;display:flex;gap:8px;align-items:flex-end}.composer textarea{flex:1;resize:none;min-height:42px;max-height:140px;background:transparent;border:0;outline:0;color:var(--text);font:inherit;padding:10px}.iconbtn,.send{border:0;border-radius:12px;padding:11px 13px;background:var(--panel2);color:var(--text);cursor:pointer}.send{background:linear-gradient(135deg,var(--accent),#5b9cf5);font-weight:700}.hint{text-align:center;color:var(--muted);font-size:11px;margin-top:8px}
+.panel{max-width:850px;margin:12px auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.panel h2{margin:0 0 8px}.muted{color:var(--muted);line-height:1.6}.field{width:100%;background:#0f1420;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px;font:inherit;margin:8px 0}.action{border:0;background:linear-gradient(135deg,var(--accent),#5b9cf5);color:white;padding:11px 15px;border-radius:11px;font-weight:700;cursor:pointer}.item{padding:12px;border:1px solid var(--line);border-radius:12px;margin-top:9px;display:flex;justify-content:space-between;gap:10px}.hidden{display:none!important}
+@media(max-width:720px){.sidebar{width:72px;padding:14px 8px}.brand{justify-content:center;padding:4px 0 16px}.brand span:last-child,.nav .label,.section,.small{display:none}.nav{justify-content:center;padding:13px 4px}.nav .ico{font-size:19px}.topbar{padding:0 14px}.content{padding:15px}.welcome{padding-top:7vh}.composer-wrap{padding:10px}.msg{max-width:94%}}
 </style>
 </head>
 <body>
-<div class="box">
-<h1>FARHAN AI</h1>
-<p>Your Multilingual AI Assistant</p>
-<p>Ask me anything!</p>
-<input id="question" placeholder="Write your question here...">
-<button id="askButton" onclick="ask()">Ask FARHAN AI</button>
-<div id="answer"></div>
-</div>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">F</div><span>FARHAN AI</span></div>
+  <button class="nav active" data-page="chat"><span class="ico">＋</span><span class="label">New Chat</span></button>
+  <button class="nav" data-page="library"><span class="ico">▤</span><span class="label">Library</span></button>
+  <button class="nav" data-page="image"><span class="ico">▧</span><span class="label">Image Studio</span></button>
+  <button class="nav" data-page="scheduled"><span class="ico">◷</span><span class="label">Scheduled</span></button>
+  <button class="nav" data-page="customize"><span class="ico">⚙</span><span class="label">Customize</span></button>
+  <button class="nav" data-page="video"><span class="ico">▶</span><span class="label">Video Studio</span></button>
+  <button class="nav" data-page="notebook"><span class="ico">▣</span><span class="label">＋ New Notebook</span></button>
+  <div class="sidebottom"><div class="small">Your personal AI workspace<br>Built with care ✦</div></div>
+</aside>
+<main class="main">
+  <header class="topbar"><div class="topname" id="pageTitle">New Chat</div><div class="pill">PERSONAL AI</div></header>
+  <section class="content" id="content">
+    <div class="welcome" id="welcome"><div class="orb">✦</div><h1>How can I help <span class="gradient">you today?</span></h1><p>Ask anything. Let's make something amazing.</p></div>
+    <div class="chat" id="chat"></div>
+  </section>
+  <div class="composer-wrap" id="composerWrap"><div class="composer"><button class="iconbtn" id="mic" title="Voice typing">🎙️</button><textarea id="prompt" rows="1" placeholder="Message FARHAN AI..."></textarea><button class="iconbtn" id="voice" title="Toggle voice replies">🔊</button><button class="send" id="send">➤</button></div><div class="hint">FARHAN AI can make mistakes. Check important information.</div></div>
+</main></div>
 <script>
-async function ask(){
-const q=document.getElementById('question').value.trim();
-const a=document.getElementById('answer');
-const btn=document.getElementById('askButton');
-
-if(!q){
-a.innerText="Please write a question first.";
-return;
+const WORKER_URL="https://summer-unit-6158.farhankhokhar300177.workers.dev/";
+const content=document.getElementById('content'),chat=document.getElementById('chat'),welcome=document.getElementById('welcome'),composerWrap=document.getElementById('composerWrap');
+let voiceOn=true,recognition=null,currentPage='chat';
+const chats=JSON.parse(localStorage.getItem('farhan_chats')||'[]');
+function saveChats(){localStorage.setItem('farhan_chats',JSON.stringify(chats))}
+function addMsg(text,who){welcome.classList.add('hidden');let d=document.createElement('div');d.className='msg '+who;d.textContent=text;chat.appendChild(d);content.scrollTop=content.scrollHeight;return d}
+function setPage(page){currentPage=page;document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.getElementById('pageTitle').textContent=({chat:'New Chat',library:'Library',image:'Image Studio',scheduled:'Scheduled',customize:'Customize',video:'Video Studio',notebook:'New Notebook'})[page];composerWrap.classList.toggle('hidden',page!=='chat');chat.innerHTML='';welcome.classList.add('hidden');
+if(page==='chat'){welcome.classList.remove('hidden');}
+if(page==='library'){content.innerHTML='<div class="panel"><h2>📚 Your Library</h2><p class="muted">Your saved conversations on this device.</p><div id="saved"></div></div>';let box=document.getElementById('saved');if(!chats.length)box.textContent='No saved chats yet.';chats.slice().reverse().forEach((c,i)=>{let e=document.createElement('div');e.className='item';e.textContent=c.q+' — '+c.a.slice(0,90);box.appendChild(e)})}
+if(page==='image'||page==='video'){let isImg=page==='image';content.innerHTML=`<div class="panel"><h2>${isImg?'🎨 Image Studio':'🎬 Video Studio'}</h2><p class="muted">Describe what you want to create. This workspace is ready for a generation service, but image/video generation is not connected yet.</p><textarea class="field" rows="4" placeholder="${isImg?'Describe your image idea...':'Describe your video idea...'}"></textarea><button class="action" onclick="alert('Generation service is not connected yet. Your prompt is ready to use when an image/video API is connected.')">Prepare prompt</button><p class="muted">No generation will be charged or started from this demo.</p></div>`}
+if(page==='scheduled'){content.innerHTML='<div class="panel"><h2>◷ Scheduled</h2><p class="muted">Create a reminder saved on this device. Keep this page/browser available; this demo does not run cloud or background tasks.</p><input class="field" id="reminderText" placeholder="Reminder title"><input class="field" id="reminderTime" type="datetime-local"><button class="action" id="addReminder">Save reminder</button><div id="reminders"></div></div>';renderReminders();document.getElementById('addReminder').onclick=()=>{let a=JSON.parse(localStorage.getItem('farhan_reminders')||'[]');let title=document.getElementById('reminderText').value,time=document.getElementById('reminderTime').value;if(!title||!time)return alert('Enter a title and date/time.');a.push({title,time});localStorage.setItem('farhan_reminders',JSON.stringify(a));renderReminders();document.getElementById('reminderText').value=''};}
+if(page==='customize'){content.innerHTML='<div class="panel"><h2>⚙ Customize FARHAN AI</h2><p class="muted">Choose how your assistant responds.</p><label><input type="checkbox" id="voiceToggle" '+(voiceOn?'checked':'')+'> Speak AI replies aloud</label><p><label>Speech language</label><select class="field" id="lang"><option value="en-US">English</option><option value="ur-PK">Urdu (Pakistan)</option></select></p><button class="action" id="saveSettings">Save settings</button><p class="muted">Voice features depend on your browser and device.</p></div>';document.getElementById('saveSettings').onclick=()=>{voiceOn=document.getElementById('voiceToggle').checked;localStorage.setItem('farhan_voice',voiceOn);localStorage.setItem('farhan_lang',document.getElementById('lang').value);alert('Settings saved on this device.')};document.getElementById('voiceToggle').checked=voiceOn;document.getElementById('lang').value=localStorage.getItem('farhan_lang')||'en-US'}
+if(page==='notebook'){content.innerHTML='<div class="panel"><h2>📒 New Notebook</h2><p class="muted">Write and save notes privately in this browser.</p><input class="field" id="noteTitle" placeholder="Notebook title"><textarea class="field" id="noteBody" rows="8" placeholder="Start writing..."></textarea><button class="action" id="saveNote">Save notebook</button><div id="notes"></div></div>';renderNotes();document.getElementById('saveNote').onclick=()=>{let a=JSON.parse(localStorage.getItem('farhan_notes')||'[]');let title=document.getElementById('noteTitle').value||'Untitled';let body=document.getElementById('noteBody').value;if(!body.trim())return alert('Write something first.');a.push({title,body});localStorage.setItem('farhan_notes',JSON.stringify(a));renderNotes();document.getElementById('noteTitle').value='';document.getElementById('noteBody').value=''};}
 }
-
-btn.disabled=true;
-a.innerText="FARHAN AI is thinking...";
-
-try{
-const r=await fetch("https://summer-unit-6158.farhankhokhar300177.workers.dev/",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({message:q})
-});
-
-const data=await r.json();
-
-if(!r.ok) throw new Error(data.error || "AI service error");
-
-a.innerText=data.answer || data.error || "No answer received.";
-
-}catch(error){
-a.innerText="Connection problem: "+error.message;
-}finally{
-btn.disabled=false;
-}
-}
+function renderReminders(){let el=document.getElementById('reminders');if(!el)return;let a=JSON.parse(localStorage.getItem('farhan_reminders')||'[]');el.innerHTML=a.map(x=>`<div class="item">${escapeHtml(x.title)} — ${escapeHtml(x.time)}</div>`).join('')||'<p class="muted">No reminders yet.</p>'}
+function renderNotes(){let el=document.getElementById('notes');if(!el)return;let a=JSON.parse(localStorage.getItem('farhan_notes')||'[]');el.innerHTML=a.map(x=>`<div class="item"><b>${escapeHtml(x.title)}</b><span>${escapeHtml(x.body.slice(0,80))}</span></div>`).join('')||'<p class="muted">No notebooks saved yet.</p>'}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>setPage(b.dataset.page)));
+async function send(){let input=document.getElementById('prompt'),q=input.value.trim();if(!q)return;input.value='';addMsg(q,'user');let wait=addMsg('Thinking…','bot');try{let r=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});let data=await r.json();if(!r.ok||!data.answer)throw new Error(data.error||'AI service error');wait.textContent=data.answer;chats.push({q,a:data.answer,at:Date.now()});saveChats();if(voiceOn&&'speechSynthesis'in window){let u=new SpeechSynthesisUtterance(data.answer);u.lang=localStorage.getItem('farhan_lang')||'en-US';speechSynthesis.speak(u)}}catch(e){wait.textContent='Connection problem: '+e.message+'. Please check the AI service connection.'}}
+document.getElementById('send').onclick=send;document.getElementById('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+document.getElementById('voice').onclick=()=>{voiceOn=!voiceOn;document.getElementById('voice').textContent=voiceOn?'🔊':'🔇';localStorage.setItem('farhan_voice',voiceOn)};
+voiceOn=localStorage.getItem('farhan_voice')!=='false';document.getElementById('voice').textContent=voiceOn?'🔊':'🔇';
+document.getElementById('mic').onclick=()=>{let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return alert('Voice typing is not supported in this browser. Try Chrome.');recognition=new SR();recognition.lang=localStorage.getItem('farhan_lang')||'en-US';recognition.onresult=e=>{document.getElementById('prompt').value+=e.results[0][0].transcript};recognition.onerror=()=>alert('Microphone could not start. Check browser permission.');recognition.start()};
 </script>
-</body>
-</html>
-
+</body></html>
